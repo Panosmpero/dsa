@@ -28,10 +28,22 @@ public class ArrayUtils {
     return result;
   }
 
+  public int[] reverse(int[] numbers, int start, int end) {
+    while (start < end) {
+      int temp = numbers[start];
+      numbers[start] = numbers[end];
+      numbers[end] = temp;
+      start++;
+      end--;
+    }
+    return numbers;
+  }
+
   public static void main(String[] args) {
     ArrayUtils arrUtils = new ArrayUtils();
     arrUtils.print(new int[] { 5, 1, 23, 4, 5 });
     int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     arrUtils.print(arrUtils.removeEven(arr));
+    arrUtils.print(arrUtils.reverse(arr, 0, arr.length - 1));
   }
 }
