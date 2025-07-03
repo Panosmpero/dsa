@@ -69,6 +69,23 @@ public class ArrayUtils {
     return secondMax;
   }
 
+  public void bubbleZeros(int[] arr) {
+    validateArray(arr);
+    int zeroTrackerIdx = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] != 0 && arr[zeroTrackerIdx] == 0) {
+        arr[zeroTrackerIdx] = arr[i];
+        arr[i] = 0;
+      }
+
+      // Move pointer if not at zero
+      if (arr[zeroTrackerIdx] != 0) {
+        zeroTrackerIdx++;
+      }
+    }
+  }
+
   private void validateArray(int[] arr) {
     if (arr == null || arr.length == 0) {
       throw new IllegalArgumentException("Array cannot be null or empty");
@@ -83,5 +100,7 @@ public class ArrayUtils {
     arrUtils.print(arrUtils.reverse(arr, 0, arr.length - 1));
     System.out.println(arrUtils.findMin(arr));
     System.out.println(arrUtils.findSecondMax(new int[] { 9, 2, 3, 4, 5, 6, 7, 8, 9 }));
+    int[] arrWithZeros = { 0, 1, 2, 0, 3, 4, 0, 5, 6 };
+    arrUtils.bubbleZeros(arrWithZeros);
   }
 }
