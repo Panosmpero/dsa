@@ -39,11 +39,29 @@ public class ArrayUtils {
     return numbers;
   }
 
+  public int findMin(int[] arr) {
+    validateArray(arr);
+    int min = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] < min) {
+        min = arr[i];
+      }
+    }
+    return min;
+  }
+
+  private void validateArray(int[] arr) {
+    if (arr == null || arr.length == 0) {
+      throw new IllegalArgumentException("Array cannot be null or empty");
+    }
+  }
+
   public static void main(String[] args) {
     ArrayUtils arrUtils = new ArrayUtils();
     arrUtils.print(new int[] { 5, 1, 23, 4, 5 });
     int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     arrUtils.print(arrUtils.removeEven(arr));
     arrUtils.print(arrUtils.reverse(arr, 0, arr.length - 1));
+    System.out.println(arrUtils.findMin(arr));
   }
 }
