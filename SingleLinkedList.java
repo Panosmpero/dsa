@@ -11,6 +11,15 @@ public class SingleLinkedList {
     }
   }
 
+  public void printData() {
+    ListNode current = head;
+    while (current != null) {
+      System.out.print(current.data + " -> ");
+      current = current.next;
+    }
+    System.out.println("null");
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -28,5 +37,8 @@ public class SingleLinkedList {
     System.out.println("Third: " + sll.head.next.next.data);
     System.out.println("Fourth: " + sll.head.next.next.next.data);
     System.out.println("Next of Fourth: " + sll.head.next.next.next.next);
+
+    System.out.println("Traversing the Single Linked List:");
+    sll.printData();
   }
 }
