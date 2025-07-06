@@ -86,6 +86,14 @@ public class ArrayUtils {
     }
   }
 
+  public int[] resize(int[] arr, int size) {
+    int[] newArr = new int[size];
+    for (int i = 0; i < arr.length; i++) {
+      newArr[i] = arr[i];
+    }
+    return newArr;
+  }
+
   private void validateArray(int[] arr) {
     if (arr == null || arr.length == 0) {
       throw new IllegalArgumentException("Array cannot be null or empty");
@@ -103,5 +111,8 @@ public class ArrayUtils {
     int[] arrWithZeros = { 0, 1, 2, 0, 3, 4, 0, 5, 6 };
     arrUtils.bubbleZeros(arrWithZeros);
     arrUtils.print(arrWithZeros);
+    int[] resizedArray = arrUtils.resize(arr, 15);
+    System.out.println("Original array length: " + arr.length);
+    System.out.println("Resized array length: " + resizedArray.length);
   }
 }
