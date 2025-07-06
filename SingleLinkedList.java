@@ -150,6 +150,22 @@ public class SingleLinkedList {
     return temp;
   }
 
+  public boolean find(int data) {
+    if (head == null) {
+      throw new IllegalStateException("List is empty, cannot find node");
+    }
+
+    ListNode current = head;
+    while (current != null) {
+      if (current.data == data) {
+        return true;
+      }
+      current = current.next;
+    }
+
+    return false;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -203,5 +219,7 @@ public class SingleLinkedList {
     deletedNode = sll.deleteAt(4);
     System.out.println("Deleted node with data: " + deletedNode.data);
     sll.printData();
+
+    System.out.println("Finding node with data 8: " + sll.find(8));
   }
 }
