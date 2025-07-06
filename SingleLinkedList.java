@@ -215,6 +215,23 @@ public class SingleLinkedList {
     return current;
   }
 
+  public void removeDuplicatesFromSorted() {
+    if (head == null) {
+      throw new IllegalStateException("List is empty, cannot remove duplicates");
+    }
+
+    ListNode current = head;
+    while (current != null && current.next != null) {
+      if (current.data == current.next.data) {
+        // If same, skip next and point to one after
+        current.next = current.next.next;
+      } else {
+        // Else move to next node
+        current = current.next;
+      }
+    }
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -278,5 +295,18 @@ public class SingleLinkedList {
     System.out.println("Getting the 2nd node from the end:");
     ListNode nthNode = sll.getNthNodeFromEnd(2);
     System.out.println("Node data: " + nthNode.data);
+
+    System.out.println("Removing duplicates from sorted list:");
+    SingleLinkedList sortedSll = new SingleLinkedList();
+    sortedSll.insertLast(1);
+    sortedSll.insertLast(1);
+    sortedSll.insertLast(2);
+    sortedSll.insertLast(3);
+    sortedSll.insertLast(3);
+    sortedSll.insertLast(4);
+    sortedSll.printData();
+    sortedSll.removeDuplicatesFromSorted();
+    System.out.println("After removing duplicates:");
+    sortedSll.printData();
   }
 }
