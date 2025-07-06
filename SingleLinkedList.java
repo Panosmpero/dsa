@@ -189,6 +189,10 @@ public class SingleLinkedList {
       throw new IllegalStateException("List is empty, cannot get node from end");
     }
 
+    if (n < 1) {
+      throw new IllegalArgumentException("Position must be greater than or equal to 1");
+    }
+
     ListNode current = head;
     ListNode ref = head;
     int index = 0;
