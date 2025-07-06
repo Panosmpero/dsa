@@ -95,6 +95,35 @@ public class ArrayUtils {
     return newArr;
   }
 
+  public int findMissingNumber(int[] arr) {
+    validateArray(arr);
+    int n = arr.length;
+    boolean[] seen = new boolean[n + 1];
+    for (int num : arr) {
+      if (num >= 0 && num <= n) {
+        seen[num] = true;
+      }
+    }
+
+    for (int i = 1; i <= n; i++) {
+      if (!seen[i]) {
+        return i;
+      }
+    }
+    return -1; // If no missing number found, return -1
+  }
+
+  public int findMissingNumberFormula(int[] arr) {
+    validateArray(arr);
+    int n = arr.length + 1; // Since one number is missing
+    int expectedSum = n * (n + 1) / 2;
+    int actualSum = 0;
+    for (int num : arr) {
+      actualSum += num;
+    }
+    return expectedSum - actualSum; // The difference is the missing number
+  }
+
   private void validateArray(int[] arr) {
     if (arr == null || arr.length == 0) {
       throw new IllegalArgumentException("Array cannot be null or empty");
@@ -115,5 +144,8 @@ public class ArrayUtils {
     int[] resizedArray = arrUtils.resize(arr, 15);
     System.out.println("Original array length: " + arr.length);
     System.out.println("Resized array length: " + resizedArray.length);
+    int[] missingNumberArray = { 1, 2, 6, 4, 5 };
+    System.out.println("Missing number: " + arrUtils.findMissingNumber(missingNumberArray));
+    System.out.println("Missing number using formula: " + arrUtils.findMissingNumberFormula(missingNumberArray));
   }
 }
