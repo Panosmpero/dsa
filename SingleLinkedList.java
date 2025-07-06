@@ -183,6 +183,34 @@ public class SingleLinkedList {
     head = previous;
   }
 
+  // Time complexity: O(n), Space complexity: O(1)
+  public ListNode getNthNodeFromEnd(int n) {
+    if (head == null) {
+      throw new IllegalStateException("List is empty, cannot get node from end");
+    }
+
+    ListNode current = head;
+    ListNode ref = head;
+    int index = 0;
+
+    // Move ref n times ahead
+    while (index < n) {
+      if (ref == null) {
+        throw new IllegalArgumentException("Position " + n + " is out of bounds");
+      }
+      ref = ref.next;
+      index++;
+    }
+
+    // Move both pointers until ref gets to the end
+    while (ref != null) {
+      ref = ref.next;
+      current = current.next;
+    }
+
+    return current;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -242,5 +270,9 @@ public class SingleLinkedList {
     System.out.println("Reversing the Single Linked List:");
     sll.reverse();
     sll.printData();
+
+    System.out.println("Getting the 2nd node from the end:");
+    ListNode nthNode = sll.getNthNodeFromEnd(2);
+    System.out.println("Node data: " + nthNode.data);
   }
 }
