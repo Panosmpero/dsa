@@ -20,6 +20,20 @@ public class SingleLinkedList {
     System.out.println("null");
   }
 
+  public int length() {
+    if (head == null) {
+      return 0;
+    }
+
+    ListNode current = head;
+    int count = 0;
+    while (current != null) {
+      count++;
+      current = current.next;
+    }
+    return count;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -40,5 +54,7 @@ public class SingleLinkedList {
 
     System.out.println("Traversing the Single Linked List:");
     sll.printData();
+
+    System.out.println("Length of the Single Linked List: " + sll.length());
   }
 }
