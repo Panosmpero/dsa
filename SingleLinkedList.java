@@ -122,6 +122,34 @@ public class SingleLinkedList {
     return temp;
   }
 
+  public ListNode deleteAt(int position) {
+    if (head == null) {
+      throw new IllegalStateException("List is empty, cannot delete node");
+    }
+
+    if (position < 1) {
+      throw new IllegalArgumentException("Position must be greater than or equal to 1");
+    }
+
+    if (position == 1) {
+      return deleteFirst();
+    }
+
+    int index = 1;
+    ListNode previous = head;
+    ListNode current = head.next;
+    while (index < position - 1 && current != null) {
+      previous = previous.next;
+      current = previous.next;
+      index++;
+    }
+    ListNode temp = current;
+    previous.next = temp.next;
+    temp.next = null;
+
+    return temp;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -168,6 +196,11 @@ public class SingleLinkedList {
 
     System.out.println("Deleting the last node:");
     deletedNode = sll.deleteLast();
+    System.out.println("Deleted node with data: " + deletedNode.data);
+    sll.printData();
+
+    System.out.println("Deleting node at position 4:");
+    deletedNode = sll.deleteAt(4);
     System.out.println("Deleted node with data: " + deletedNode.data);
     sll.printData();
   }
