@@ -41,6 +41,21 @@ public class SingleLinkedList {
     return head;
   }
 
+  public ListNode insertLast(int data) {
+    ListNode newNode = new ListNode(data);
+    if (head == null) {
+      head = newNode;
+      return newNode;
+    }
+
+    ListNode current = head;
+    while (current.next != null) {
+      current = current.next;
+    }
+    current.next = newNode;
+    return newNode;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -66,6 +81,14 @@ public class SingleLinkedList {
 
     System.out.println("Inserting 5 at the beginning:");
     sll.insertFirst(5);
+    sll.printData();
+
+    System.out.println("Adding 20 at the end:");
+    sll.insertLast(20);
+    sll.printData();
+
+    System.out.println("Inserting 100 at the beginning to make sure head is correct:");
+    sll.insertFirst(100);
     sll.printData();
   }
 }
