@@ -56,6 +56,40 @@ public class SingleLinkedList {
     return newNode;
   }
 
+  public ListNode insertAt(int data, int position) {
+    if (position < 1) {
+      throw new IllegalArgumentException("Position must be greater than or equal to 1");
+    }
+
+    if (head == null && position > 1) {
+      throw new IllegalArgumentException("Cannot insert at position " + position + " in an empty list");
+    }
+
+    if (position == 1) {
+      return insertFirst(data);
+    }
+
+    ListNode newNode = new ListNode(data);
+
+    int index = 1;
+    ListNode current = head;
+
+    // Move index until it reaches position
+    while (index < position - 1 && current != null) {
+      current = current.next;
+      index++;
+    }
+
+    if (current == null) {
+      throw new IllegalArgumentException("Position " + position + " is out of bounds");
+    }
+
+    newNode.next = current.next;
+    current.next = newNode;
+
+    return newNode;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -89,6 +123,10 @@ public class SingleLinkedList {
 
     System.out.println("Inserting 100 at the beginning to make sure head is correct:");
     sll.insertFirst(100);
+    sll.printData();
+
+    System.out.println("Inserting 50 at position 3:");
+    sll.insertAt(50, 3);
     sll.printData();
   }
 }
