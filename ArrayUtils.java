@@ -87,6 +87,7 @@ public class ArrayUtils {
   }
 
   public int[] resize(int[] arr, int size) {
+    validateArray(arr);
     int[] newArr = new int[size];
     for (int i = 0; i < arr.length; i++) {
       newArr[i] = arr[i];
