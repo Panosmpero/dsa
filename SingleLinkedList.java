@@ -34,6 +34,13 @@ public class SingleLinkedList {
     return count;
   }
 
+  public ListNode insertFirst(int data) {
+    ListNode newNode = new ListNode(data);
+    newNode.next = head;
+    head = newNode;
+    return head;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -56,5 +63,9 @@ public class SingleLinkedList {
     sll.printData();
 
     System.out.println("Length of the Single Linked List: " + sll.length());
+
+    System.out.println("Inserting 5 at the beginning:");
+    sll.insertFirst(5);
+    sll.printData();
   }
 }
