@@ -166,6 +166,23 @@ public class SingleLinkedList {
     return false;
   }
 
+  public void reverse() {
+    if (head == null) {
+      throw new IllegalStateException("List is empty, cannot reverse");
+    }
+
+    ListNode previous = null;
+    ListNode current = head;
+    ListNode next = null;
+    while (current != null) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+    head = previous;
+  }
+
   public static void main(String[] args) {
     SingleLinkedList sll = new SingleLinkedList();
     sll.head = new ListNode(10);
@@ -221,5 +238,9 @@ public class SingleLinkedList {
     sll.printData();
 
     System.out.println("Finding node with data 8: " + sll.find(8));
+
+    System.out.println("Reversing the Single Linked List:");
+    sll.reverse();
+    sll.printData();
   }
 }
