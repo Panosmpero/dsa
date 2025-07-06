@@ -102,5 +102,6 @@ public class ArrayUtils {
     System.out.println(arrUtils.findSecondMax(new int[] { 9, 2, 3, 4, 5, 6, 7, 8, 9 }));
     int[] arrWithZeros = { 0, 1, 2, 0, 3, 4, 0, 5, 6 };
     arrUtils.bubbleZeros(arrWithZeros);
+    arrUtils.print(arrWithZeros);
   }
 }
